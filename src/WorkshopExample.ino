@@ -14,7 +14,7 @@
 */
 
 #include <WiFi.h>
-#include <NetworkClient.h>
+#include <WiFiClient.h>
 #include <WiFiAP.h>
 #include "buildinfiles.h"
 
@@ -22,7 +22,7 @@
 const char *ssid = "Wago";
 const char *password = "wago";
 
-NetworkServer server(80);
+WiFiServer server(80);
 
 void setup() {
   Serial.begin(115200);
@@ -45,7 +45,7 @@ void setup() {
 }
 
 void loop() {
-  NetworkClient client = server.available();  // listen for incoming clients
+  WiFiClient client = server.available();  // listen for incoming clients
 
   if (client) {                    // if you get a client,
     Serial.println("New Client");  // print a message out the serial port
@@ -100,7 +100,7 @@ void loop() {
         }
       }
     }
-    
+
     // close the connection:
     client.stop();
     Serial.println("Client Disconnected.");
